@@ -1,0 +1,52 @@
+import java.util.Random;                          //importing random library
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);                   //creating obj of scanner class
+        Random rand=new Random();                           //creating obj of random class
+        System.out.println("User enter your name:");        //user input to enter their name
+        String str=sc.next();
+        int points=0;     //initial points is 0
+        int c=1;
+        while(c==1) {
+            int a = rand.nextInt(100);  //generating random number from 1 to 100
+            System.out.println("Hello "+str+" enter your guess from 1 to 100");
+            int guess=sc.nextInt();             //asking user to guess the number
+            int i=1;
+                while (guess != a) {     //this loop runs until the guess=the no generated
+                    while(i<=4) {           //the user has only 5 attempts(1 is already done above,hence 4 here)
+                        if (guess < a) {                  //if the user's guess is lesser than the no. generated
+                            System.out.println("Too Low");
+                            System.out.println("Enter:");
+                            guess = sc.nextInt();
+                        } else {
+                            if (guess > a && guess <= 100) {     //if the user,s guess is greater than the no.generated
+                                System.out.println("Too high");
+                                System.out.println("Enter:");
+                                guess = sc.nextInt();
+                            } else {
+                                if (guess > 100) {  //if the guess is greater than 100(since the limit is only till 100)
+                                    System.out.println("entered no out of limits");
+                                    System.out.println("Enter:");
+                                    guess = sc.nextInt();
+                                }
+                            }
+                        }
+                        i = i + 1;     //users's attempts increments to 1
+                    }
+                    break;                //loop breaks at the end of all attempts
+                }
+                if (guess == a) {              //if the guess is correct
+                    System.out.println("Correct you won!!");
+                    points=points+1;         //points get incremented to 1
+                }
+                else System.out.println("Attempts over");
+            System.out.println("Answer is:"+a);
+                System.out.println("Continue the game? 1/0");   //this asks user if he wants to continue the game or not
+                c = sc.nextInt();
+                if(c==0)
+                    //if the user doesn't want to continue then the game exits with total points based on the rounds
+                    System.out.println("Thank you for playing your score is:"+points);
+        }
+    }
+}
